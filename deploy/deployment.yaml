@@ -1,14 +1,8 @@
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: kube-schedule-scaler
----
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: kube-schedule-scaler
-  namespace: kube-schedule-scaler
+  namespace: kube-system
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -17,7 +11,7 @@ metadata:
 subjects:
 - kind: ServiceAccount
   name: kube-schedule-scaler
-  namespace: kube-schedule-scaler
+  namespace: kube-system
 roleRef:
   kind: ClusterRole
   name: kube-schedule-scaler
@@ -45,7 +39,7 @@ metadata:
   labels:
     app: kube-schedule-scaler
   name: kube-schedule-scaler
-  namespace: kube-schedule-scaler
+  namespace: kube-system
 spec:
   replicas: 1
   selector:
